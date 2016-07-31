@@ -14,13 +14,13 @@ select
     then invoice_items.period_end
     else refunded_at
   end real_end 
-from 
-  {{ref('stripe_invoice_items_cleaned')}} as invoice_items 
+from
+  {{ref('stripe_invoices_cleaned')}} as invoices
 left join 
   {{ref('stripe_charges_cleaned')}} as charges 
 on 
-  charges.invoice = invoice_items.invoice
-left join 
-  {{ref('stripe_invoices_cleaned')}} as invoices
+  charges.invoice = invoices.id
+left join
+  {{ref('stripe_invoice_items_cleaned')}} as invoice_items
 on
   invoices.id = invoice_items.invoice
