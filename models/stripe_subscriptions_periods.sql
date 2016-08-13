@@ -10,6 +10,7 @@ select
   s.amount,
   s.amount_charged,
   p.mrr*quantity as mrr,
+  p.interval,
   s.paid,
   s.refunded,
   s.is_main
