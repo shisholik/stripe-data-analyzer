@@ -6,7 +6,11 @@ select
   s.plan,
   s.quantity,
   s.period_start,
-  case when lead(s.period_start) OVER (partition by subscription ORDER BY period_start) < period_end then lead(s.period_start) OVER (partition by subscription ORDER BY period_start) else period_end end period_end,
+  case
+    when lead(s.period_start) OVER (partition by subscription ORDER BY period_start) < period_end
+      then lead(s.period_start) OVER (partition by subscription ORDER BY period_start)
+    else period_end
+  end period_end,
   s.amount,
   s.amount_charged,
   p.mrr*quantity as mrr,
