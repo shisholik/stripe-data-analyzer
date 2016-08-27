@@ -2,3 +2,4 @@
 *.iml
 target/
 dbt_modules/
+.DS_Store

@@ -2,6 +2,7 @@ select
   s.customer,
   s.invoice,
   s.date,
+  date_trunc('month',s.date) as invoice_date_month,
   s.subscription,
   s.plan,
   s.quantity,
